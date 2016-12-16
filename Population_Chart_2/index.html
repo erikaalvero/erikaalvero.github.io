@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population Bubble Chart</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+	<div class="container">
+
+        
+	</div>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script type="text/javascript">
+
+    
+var diameter = 500,
+    format = d3.format(",d"),
+    color = d3.scaleOrdinal(d3.schemeCategory20c);
+      
+var bubble = d3.pack()
+    .size([diameter, diameter])
+    .padding(1.5);
+      
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
+      
+
+d3.csv("Population_Continent.csv", function(error, data){
+    if (error) throw error;
+    
+    console.log(data);
+    
+data = data.map(function(d){  d.value = +d["Population"]; return d; });
+    
+var root = d3.hierarchy({children:data})
+    .sum(function(d) {return d.value; })
+    .sort(function(a, b) { return b.value - a.value; })
+    
+    bubble(root);
+
+    var bubbles = svg.selectAll(".bubble")
+        .data(root.children)
+        .enter();
+    
+    bubbles.append("circle")
+            .attr("class", "circle")
+            .attr("r", function(d){ return d.r; })
+            .attr("cx", function(d){ return d.x; })
+            .attr("cy", function(d){ return d.y; })
+            .style("fill", function(d) { return color(d.value); });
+    
+    bubbles.append("text")
+            .attr("x", function(d){ return d.x; })
+            .attr("y", function(d){ return d.y + 5; })
+            .attr("text-anchor", "middle")
+            .text(function(d){ return d.data["Continent"]; })
+            .style("fill", "white")
+            .style("font-family", "Helvetica Neue, Helvetica, Arial, san-serif")
+            .style("font-size", "12px");
+      
+})
+  </script>
+</body>
+</html>
