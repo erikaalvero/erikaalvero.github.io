@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CO2 Emissions</title>
+</head>
+<body>
+    <h1 align="center">Global Carbon Dioxide Emissions by Region</h1>
+    <h2 align="center">Increases from 1965 until 2011, by hundred million metric tons</h2>
+    
+    <p>
+    <b>Central and South America</b> = Green
+    &nbsp &nbsp &nbsp &nbsp
+    <b>Asia Pacific</b> = Blue
+    </p>
+    
+    <p>
+    <b>United States</b> = Orange
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    <b>Africa</b> = Purple
+    </p>
+    
+    <p>
+    <b>Middle East</b> = Pink
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    <b>EU Countries</b> = Red
+    </p>
+        
+    <svg width="900" height="500"></svg>
+    
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script> 
+        
+        //http://www.energytrendsinsider.com/2012/07/02/global-carbon-dioxide-emissions-facts-and-figures/        
+     //Central and South America/
+        
+        
+        d3.select("svg")
+        .append("circle")
+        .style("fill","green")
+        .attr("r", 3.2)
+        .attr("cx", 250)
+        .attr("cy", 150)
+        
+        .on("mouseover", function(d){
+            
+        d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 13)
+    })
+        .on("mouseout", function(d){
+            
+        d3.select(this)
+        .transition()
+        .duration(400)
+        .attr("r", 3.2);
+            
+        });
+        
+        
+        
+        //EU Countries
+        
+        d3.select("svg")
+        .append("circle")
+        .style("fill","red")
+        .attr("r", 32.5)
+        .attr("cx", 800)
+        .attr("cy", 350)
+        
+        .on("mouseover", function(d){
+            
+        d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 40)
+    })
+        .on("mouseout", function(d){
+            
+        d3.select(this)
+        .transition()
+        .duration(400)
+        .attr("r", 32.5);
+    });
+        //United States
+        
+        d3.select("svg")
+        .append("circle")
+        .style("fill","orange")
+        .attr("r", 39)
+        .attr("cx", 800)
+        .attr("cy", 150)
+        
+        .on("mouseover", function(d){
+            
+        d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 60)
+    })
+        .on("mouseout", function(d){
+            
+        d3.select(this)
+        .transition()
+        .duration(400)
+        .attr("r", 39);
+    });
+   
+        //Africa
+        
+        d3.select("svg")
+        .append("circle")
+        .style("fill","purple")
+        .attr("r", 1.2)
+        .attr("cx", 250)
+        .attr("cy", 350)
+        
+        .on("mouseover", function(d){
+            
+        d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 11.2)
+    })
+        .on("mouseout", function(d){
+            
+        d3.select(this)
+        .transition()
+        .duration(400)
+        .attr("r", 1.2);
+            
+        });
+        
+        //Middle East
+        
+        d3.select("svg")
+        .append("circle")
+        .style("fill","pink")
+        .attr("r", 1.1)
+        .attr("cx", 525)
+        .attr("cy", 350)
+        
+        //transitions
+        
+        .on("mouseover", function(d){
+            
+        d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 20.2)
+    })
+        .on("mouseout", function(d){
+            
+        d3.select(this)
+        .transition()
+        .duration(400)
+        .attr("r", 1.1);
+            
+        });
+        
+        //Asia Pacific
+        
+        d3.select("svg")
+        .append("circle")
+        .style("fill","blue")
+        .attr("r", 16.5)
+        .attr("cx", 525)
+        .attr("cy", 150)
+        
+        .on("mouseover", function(d){
+
+        //this will execute when the mouse is over "this" particular circle
+            
+        d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 156)
+    })
+        .on("mouseout", function(d){
+
+        //return values back to the their defaults when mouse is off
+            
+            d3.select(this)
+            .transition()
+            .duration(400)
+            .attr("r", 16.5);
+    });
+        
+    //text attempt
+ var circleData = [
+        { "cx": 100, "cy": 20, "radius": 20, "color" : "white" }];
+ 
+
+        
+    </script>
+</body>
+</html>
